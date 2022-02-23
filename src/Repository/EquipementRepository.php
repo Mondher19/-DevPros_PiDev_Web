@@ -47,4 +47,26 @@ class EquipementRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findEquippcgamer(){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("SELECT s FROM APP\Entity\Equipement s WHERE s.categorie = 2 ");
+        return $query->getResult();
+    }
+
+    public function findEquipconsole(){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("SELECT s FROM APP\Entity\Equipement s WHERE s.categorie = 3 ");
+        return $query->getResult();
+    }
+
+    public function findEquipaccessoire(){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("SELECT s FROM APP\Entity\Equipement s WHERE s.categorie = 4 ");
+        return $query->getResult();
+    }
+
+
 }

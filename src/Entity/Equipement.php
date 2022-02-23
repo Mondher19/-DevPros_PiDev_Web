@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Categorie;
 
 /**
  * @ORM\Entity(repositoryClass=EquipementRepository::class)
@@ -26,11 +27,6 @@ class Equipement
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
-    private $categorie;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,27 +36,18 @@ class Equipement
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=ImageEq::class, mappedBy="equipement", orphanRemoval=true)
-     * @Assert\NotBlank
+     * @ORM\ManyToOne(targetEntity=categorie::class, inversedBy="equipements")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $imageEqs;
+    private $categorie;
 
-    public function __construct()
-    {
-        $this->imageEqs = new ArrayCollection();
-    }
+
+
 
     public function getId(): ?int
     {
@@ -79,17 +66,6 @@ class Equipement
         return $this;
     }
 
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
 
     public function getMarque(): ?string
     {
@@ -103,17 +79,6 @@ class Equipement
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -127,33 +92,17 @@ class Equipement
         return $this;
     }
 
-    /**
-     * @return Collection|ImageEq[]
-     */
-    public function getImageEqs(): Collection
+    public function getCategorie(): ?categorie
     {
-        return $this->imageEqs;
+        return $this->categorie;
     }
 
-    public function addImageEq(ImageEq $imageEq): self
+    public function setCategorie(?categorie $categorie): self
     {
-        if (!$this->imageEqs->contains($imageEq)) {
-            $this->imageEqs[] = $imageEq;
-            $imageEq->setEquipement($this);
-        }
+        $this->categorie = $categorie;
 
         return $this;
     }
 
-    public function removeImageEq(ImageEq $imageEq): self
-    {
-        if ($this->imageEqs->removeElement($imageEq)) {
-            // set the owning side to null (unless already changed)
-            if ($imageEq->getEquipement() === $this) {
-                $imageEq->setEquipement(null);
-            }
-        }
 
-        return $this;
-    }
 }

@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMony;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use App\Entity\Equipement;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
@@ -23,9 +27,16 @@ class Categorie
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity=equipement::class, cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Equipement::class, mappedBy="categorie", orphanRemoval=true)
      */
-    private $equipement;
+    private $equipements;
+
+
+
+    public function __construct()
+    {
+        $this->equipements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,14 +55,40 @@ class Categorie
         return $this;
     }
 
-    public function getEquipement(): ?equipement
+
+
+
+    public function __toString()
     {
-        return $this->equipement;
+        return(string)$this->getName();
     }
 
-    public function setEquipement(?equipement $equipement): self
+    /**
+     * @return Collection|Equipement[]
+     */
+    public function getEquipements(): Collection
     {
-        $this->equipement = $equipement;
+        return $this->equipements;
+    }
+
+    public function addEquipement(Equipement $equipement): self
+    {
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements[] = $equipement;
+            $equipement->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipement(Equipement $equipement): self
+    {
+        if ($this->equipements->removeElement($equipement)) {
+            // set the owning side to null (unless already changed)
+            if ($equipement->getCategorie() === $this) {
+                $equipement->setCategorie(null);
+            }
+        }
 
         return $this;
     }

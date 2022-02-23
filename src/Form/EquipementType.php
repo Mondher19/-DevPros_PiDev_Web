@@ -17,7 +17,6 @@ class EquipementType extends AbstractType
             ->add('name')
             ->add('categorie')
             ->add('marque')
-            ->add('image', FileType::class, array('label' => 'Image(JPG)'))
             ->add('description')
             ->add("Enregistrer",SubmitType::class)
         ;

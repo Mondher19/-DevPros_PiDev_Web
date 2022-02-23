@@ -6,53 +6,86 @@
 
 {% block body %}
 
-    <div class="container">
-    <div class="product_section_2" >
 
-    <div class="row" >
-        <div class="col-md-4">
-            {{ form_start(formproduit,{'attr':{'novalidate':'novalidate'}}) }}
-            {{ form_start(formproduit) }}
+    {{ form_start(formproduit,{'attr':{'novalidate':'novalidate'}}) }}
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="sparkline12-list">
+            <div class="sparkline12-hd">
+                <div class="main-sparkline12-hd">
 
-            <table>
-                <tr>
-                    <td>{{ form_label(formproduit.name,"Nom de l'equipement") }}</td>
-                    <td>{{ form_widget(formproduit.name) }}</td>
-                    <td>{{ form_errors(formproduit.name) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(formproduit.description,"Description ") }}</td>
-                    <td>{{ form_widget(formproduit.description) }}</td>
-                    <td>{{ form_errors(formproduit.description) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(formproduit.categorie,"Categorie") }}</td>
-                    <td>{{ form_widget(formproduit.categorie) }}</td>
-                    <td>{{ form_errors(formproduit.categorie) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(formproduit.image,"Inserer un image") }}</td>
-                    <td>{{ form_widget(formproduit.image) }}</td>
-                    <td>{{ form_errors(formproduit.image) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(formproduit.marque,"marque ") }}</td>
-                    <td>{{ form_widget(formproduit.marque) }}</td>
-                    <td>{{ form_errors(formproduit.marque) }}</td>
-                </tr>
+                </div>
+            </div>
+            <div class="sparkline12-graph">
+                <div class="basic-login-form-ad">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="all-form-element-inner">
+                                <form action="#">
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                {{ form_label(formproduit.name,"Nom :",{'attr':{'type':'label','class':'login2 pull-right pull-right-pro'}}) }}
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                {{ form_widget(formproduit.name,{'attr':{'class':'form-control','type':'text'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                {{ form_label(formproduit.description," Description :",{'attr':{'class':'login2 pull-right pull-right-pro'}}) }}
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                {{ form_widget(formproduit.description,{'attr':{'class':'form-control','type':'text'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                {{ form_label(formproduit.categorie," Catégorie  :",{'attr':{'class':'login2 pull-right pull-right-pro'}}) }}
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                {{ form_widget(formproduit.categorie,{'attr':{'class':'form-control','type':'text'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                {{ form_label(formproduit.marque," Marque  :",{'attr':{'class':'login2 pull-right pull-right-pro'}}) }}
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                {{ form_widget(formproduit.marque,{'attr':{'class':'form-control','type':'text','length':'50px'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-            </table>
-            {{ form_end(formproduit) }}
+
+
+
+
+
+
+
+
+
+                                </form>
+                                {{ form_end(formproduit) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-    </div>
-    <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br>
 
 
 
-
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 {% endblock %}
+

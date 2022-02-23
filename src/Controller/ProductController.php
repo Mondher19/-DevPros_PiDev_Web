@@ -40,14 +40,6 @@ class ProductController extends AbstractController
         $form = $this->createForm(EquipementType::class,$equipement);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid() ) {
-            $image = $form->get('image')->getData();
-            foreach ($image as $images){
-                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-                $images->move(
-                    $this->getParameter('image_directory').
-                    $fichier
-                );
-            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($equipement);
             $em->flush();
@@ -89,6 +81,33 @@ class ProductController extends AbstractController
         $em->remove($equipement);
         $em->flush();
         return $this->redirectToRoute("listProduct");
+    }
+
+    /**
+     * @Route("/listproduct_pcgamer",name="listProduct_pcgamer")
+     */
+    public function listpcgamer(EquipementRepository  $repository)
+    {
+        $product= $repository->findEquippcgamer();
+        return $this->render("Product/pc_gamer.html.twig", array('tabclass'=>$product));
+    }
+
+    /**
+     * @Route("/listproduct_console",name="listProduct_console")
+     */
+    public function listconsole(EquipementRepository  $repository)
+    {
+        $product= $repository->findEquipconsole();
+        return $this->render("Product/console.html.twig", array('tabclass'=>$product));
+    }
+
+    /**
+         * @Route("/listproduct_accessoire",name="listProduct_accessoire")
+     */
+    public function listaccessoire(EquipementRepository $repository)
+    {
+        $product= $repository->findEquipaccessoire();
+        return $this->render("Product/accessoire.html.twig", array('tabclass'=>$product));
     }
 
 
