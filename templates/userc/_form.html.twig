@@ -1,0 +1,55 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    {%  form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+
+
+<h4  class="card-title">inscription</h4>
+
+
+<table class="table">
+    <tr>
+        <td>
+            {{ form_label(form.nom,"nom") }}
+        </td>
+        <td>
+            {{ form_widget(form.nom) }}
+            {{ form_errors(form.nom) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ form_label(form.prenom,"prenom") }}
+        </td>
+        <td>
+            {{ form_widget(form.prenom) }}
+            {{ form_errors(form.prenom) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ form_label(form.mail,"mail") }}
+        </td>
+        <td>
+            {{ form_widget(form.mail) }}
+            {{ form_errors(form.mail) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ form_label(form.mdp,"mdp") }}
+        </td>
+        <td>
+            {{ form_widget(form.mdp) }}
+            {{ form_errors(form.mdp) }}
+        </td>
+    </tr>
+</table>
+
+
+{{ form_end(form) }}
+
+
+
+
+
+

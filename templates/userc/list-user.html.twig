@@ -1,0 +1,56 @@
+{% extends 'base-front.html.twig' %}
+
+
+
+{% block title %}Les equipement Disponisble{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    <div class="product_section_2" >
+
+    <div class="row" >
+        <div class="col-md-4">
+
+            <table border="4" >
+        <tr>
+            <td>Id</td>
+            <td>Nom</td>
+            <td>prenom</td>
+            <td>mail</td>
+            <td>mdp</td>
+            <td>Action</td>
+            <td>action</td>
+
+        </tr>
+        {% for i in user %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.nom }}</td>
+                <td>{{ i.prenom }}</td>
+                <td>{{ i.mail }}</td>
+                <td>{{ i.mdp }}</td>
+
+
+                <td><a href="{{ path('userc_edit',{'id':i.id}) }}" >Update</a>
+                </td>
+                <td>
+                    <a href="{{ path('removegamescat',{'id':i.id}) }}">Remove</a>
+                    </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+            <br><br><br><br><br><br><br><br>
+        </div></div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
