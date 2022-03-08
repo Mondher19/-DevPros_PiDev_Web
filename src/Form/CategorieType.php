@@ -15,6 +15,7 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('sujet')
+
             ->add("Submit",SubmitType::class)
         ;
     }

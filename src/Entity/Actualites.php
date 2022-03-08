@@ -5,7 +5,8 @@ namespace App\Entity;
 use App\Repository\ActualitesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DeepCopy\TypeFilter\Date;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ActualitesRepository::class)
@@ -21,31 +22,36 @@ class Actualites
 
     /**
      * @ORM\Column(type="string", length=255)
-
+     * @Assert\NotBlank
      */
-
-    private $nomact;
-
-    /**
-     * @ORM\Column(type="text")
-
-     */
-
     private $image;
 
     /**
      * @ORM\Column(type="text")
-
+     * @Assert\NotBlank
      */
 
     private $Description;
 
-
-   /* /**
-     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="actualites")
-     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
-   /* private $categorie;*/
+    private $nom;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="relation")
+     */
+    private $categorie;
+
+
+    public function makeimagefile()
+    {
+        return  $file=new File($this->image);
+
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,35 +60,9 @@ class Actualites
     /**
      * @return mixed
      */
-    public function getNomAct()
-    {
-        return $this->nomact;
-    }
 
 
 
-    public function setNomAct(string $nomact): self
-    {
-        $this->image = $nomact;
-
-        return $this;
-    }
-
-  /*  /**
-     * @return mixed
-     */
-   /* public function getCategorie()
-    {
-        return $this->categorie;
-    }*/
-
-  /*  /**
-     * @param mixed $categorie
-     */
-   /* public function setCategorie($categorie): void
-    {
-        $this->categorie = $categorie;
-    }*/
 
     public function getImage(): ?string
     {
@@ -104,6 +84,30 @@ class Actualites
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

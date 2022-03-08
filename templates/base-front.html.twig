@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Gamepad {% block title %} index {% endblock %}</title>
+    <title>Pidev {% block title %} index {% endblock %}</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -36,41 +36,23 @@
 <!-- header section start -->
 <div class="header_section">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="logo"><a href="index.html"><img src="{{ asset('front-office/images/logo.png') }}"></a></div>
+        <div class="logo"><a href="/pidev"><img src="{{ asset('front-office/images/logo.png') }}"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Acceuil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">Equipement</a>
+                    <a class="nav-link" href="/pidev">Acceuil</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="video.html">Organiser un Tournoi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="remot.html">Rejoindre un tournoi</a>
-                </li>
-                <li class="nav-item">
 
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('listactualitesf')}}">Actualités</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">à Propos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="{{ asset('front-office/images/search-icon.png') }}"></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Se Connecter</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a>
-                </li>
+
+
+
             </ul>
         </div>
     </nav>
@@ -78,7 +60,7 @@
 <!-- header section end -->
 <!-- banner section start -->
 
-{
+
 {% block body %}
 <div class="banner_section layout_padding">
 

@@ -7,30 +7,36 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-    <h1>Les actualites</h1>
-    <table class="table">
-        <thead>
-        <tr>
+    <div align="center">
+    <a class=btn btn-primary dropdown-toggle data-toggle=dropdown href=#>Sélectionnez Catégorie :<span class=caret></span></a>
+    <ul class=dropdown-menu>
+    {% for i in categories %}
+        <li><a href="{{ path ('listactualitesf1',{'id':i.id}) }}">{{ i.sujet }}</a></li>
+    {% endfor %}
+    </ul>
+    </div>
+    <div class="product_section layout_padding">
+        <div class="container">
+            <div class="product_text">Notre <span style="color: #5ca0e9;">Actualités</span></div>
+            <div class="product_section_2">
+                <div class="row">
+                    {% for i in actualite %}
+                    <div class="col-md-6">
 
-            <th scope="col">Nom</th>
-            <th scope="col">Image</th>
-            <th scope="col">Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            {% for i in actualite %}
-            <th scope="row">1</th>
-            <td>{{ i.nomact }}</td>
-            <td>{{ i.image }}</td>
-            <td>{{ i.Description }}</td>
-            <a href="{{ path('listactualitesf',{'id':i.id}) }} " </a>
-        </tr>
+                        <div class="price_text" >{{ i.nom }}</div>
+                        <div class="image_2" align="center"><img height="1200" width ="1200"  src="{{ i.image }}"></div>
+                        <p class="long_text">{{ i.Description }}</p>
+                     <a href="{{ path('listaffiche',{'id':i.id}) }} " <button type="button" class="btn btn-primary">Afficher</button></a>
 
-        </tbody>
-        {% endfor %}
-    </table>
+                </div>
 
-
+                {% endfor %}
+                </div>
+            </div>
+            <div align="center">
+            <td>  <a href="{{ path('listactualitesf') }} " <button type="button" class="btn btn-primary">All</button></a></td>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

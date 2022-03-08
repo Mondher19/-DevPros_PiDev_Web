@@ -18,6 +18,15 @@ class ActualitesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Actualites::class);
     }
+    public function get_by_categorie($cat)
+    {
+        return $this->createQueryBuilder('A')
+            ->andWhere('A.categorie = :val')
+            ->setParameter('val',$cat )
+            ->orderBy('A.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
     // /**
     //  * @return Actualites[] Returns an array of Actualites objects

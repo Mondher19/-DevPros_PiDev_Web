@@ -24,22 +24,17 @@ class Categorie
      * @Assert\NotBlank
      */
     private $sujet;
-/*
+
     /**
-     * @ORM\OneToMany(targetEntity=actualites::class, mappedBy="typecateg")
+     * @ORM\OneToMany(targetEntity=Actualites::class, mappedBy="categorie")
      */
-   /* private $categ;*/
+    private $relation;
 
-   /* /**
-     * @ORM\OneToMany(targetEntity=Actualites::class, mappedBy="actua")
-     */
-   /* private $ActualitesType;*/
-
-   /* public function __construct()
+    public function __construct()
     {
-        $this->categ = new ArrayCollection();
-        $this->ActualitesType = new ArrayCollection();
-    }*/
+        $this->relation = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -70,64 +65,32 @@ class Categorie
 
         return $this;
     }
-/*
-    /**
-     * @return Collection<int, actualites>
-     */
-   /* public function getCateg(): Collection
-    {
-        return $this->categ;
-    }
 
-    public function addCateg(actualites $categ): self
+    public function addRelation(actualites $relation): self
     {
-        if (!$this->categ->contains($categ)) {
-            $this->categ[] = $categ;
-            $categ->setTypecateg($this);
+        if (!$this->relation->contains($relation)) {
+            $this->relation[] = $relation;
+            $relation->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeCateg(actualites $categ): self
+    public function removeRelation(actualites $relation): self
     {
-        if ($this->categ->removeElement($categ)) {
+        if ($this->relation->removeElement($relation)) {
             // set the owning side to null (unless already changed)
-            if ($categ->getTypecateg() === $this) {
-                $categ->setTypecateg(null);
+            if ($relation->getCategorie() === $this) {
+                $relation->setCategorie(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Actualites>
-     */
-   /* public function getActualitesType(): Collection
+    public function __toString()
     {
-        return $this->ActualitesType;
+        return(string)$this->getSujet();
     }
 
-    public function addActualitesType(Actualites $actualitesType): self
-    {
-        if (!$this->ActualitesType->contains($actualitesType)) {
-            $this->ActualitesType[] = $actualitesType;
-            $actualitesType->setActua($this);
-        }
-
-        return $this;
-    }
-
-    public function removeActualitesType(Actualites $actualitesType): self
-    {
-        if ($this->ActualitesType->removeElement($actualitesType)) {
-            // set the owning side to null (unless already changed)
-            if ($actualitesType->getActua() === $this) {
-                $actualitesType->setActua(null);
-            }
-        }
-
-        return $this;
-    }*/
 }

@@ -43,6 +43,7 @@ class CategorieController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($categorie);
             $em->flush();
+            return $this->redirectToRoute("listcategorie");
         }
         return $this->render("categorie/categorie.html.twig", array('form' => $formcateg->createView()));
     }
@@ -72,7 +73,7 @@ class CategorieController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($categorie);
         $em->flush();
-        return $this->redirectToRoute("addcategorie");
+        return $this->redirectToRoute("listcategorie");
 
     }
 }

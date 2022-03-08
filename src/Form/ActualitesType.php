@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Actualites;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,9 +14,17 @@ class ActualitesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomact')
-            ->add('image')
+            ->add('nom')
+            ->add('image',FileType::class, array(
+                    'multiple'    => false,
+                    'attr' => array(
+
+                        'accept' => 'image/*',
+                    )
+                )
+            )
             ->add('Description')
+            ->add('categorie')
 
             ->add("Submit",SubmitType::class)
         ;
