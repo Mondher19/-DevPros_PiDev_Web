@@ -27,7 +27,14 @@ class ActualitesRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
+    public function search($nom)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.nom LIKE :nom')
+            ->setParameter('nom', '%'.$nom.'%')
+            ->getQuery()
+            ->execute();
+    }
     // /**
     //  * @return Actualites[] Returns an array of Actualites objects
     //  */

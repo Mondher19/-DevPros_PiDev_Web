@@ -4,9 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Actualites;
 use App\Entity\Categorie;
+use App\Form\SearchType;
+use App\Repository\ActualitesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class ActualitesfrontController extends AbstractController
 {
@@ -22,11 +26,20 @@ class ActualitesfrontController extends AbstractController
     /**
      * @Route("/listactf",name="listactualitesf")
      */
-    public function list()
+    public function list(Request $request,ActualitesRepository $T)
     {
         $act=$this->getDoctrine()->getRepository(Actualites::class)->findAll();
         $C=$this->getDoctrine()->getRepository(Categorie::class)->findAll();
-        return $this->render("actualitesfront/index.html.twig",array('actualite'=>$act,'categories'=>$C));
+        $formsearchI = $this->createForm(SearchType::class);
+        $formsearchI->handleRequest($request);
+        if ($formsearchI->isSubmitted()) {
+            $nom = $formsearchI->getData();
+            $TSearch = $T->search($nom);
+           return $this->render("actualitesfront/search.html.twig",
+                array("cat" => $TSearch, 'actualite' => $T)) ;
+        }
+        return $this->render("actualitesfront/index.html.twig",array('actualite'=>$act,'categories'=>$C,"formsearchI" => $formsearchI->createView()));
+
 
     }
     /**
