@@ -15,15 +15,39 @@
                 <div class="col-lg-12 stretch-card">
                     <div class="card">
                         <div class="card-body">
+                            {% for message in app.flashes('clear') %}
+                                <div class="alert alert-danger" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Alo!</strong> {{ message }}
+                                </div>
+                            {% endfor %}
+                                {% for message in app.flashes('sucess') %}
+                                    <div class="alert alert-success" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>félicitation!</strong> {{ message }}
+                                    </div>
+                                {% endfor %}
+
+
+                            <form class="form-inline mt-2 mt-md-0 d-none d-lg-block">
+                            <input id="search" class="form-control pull-right mr-sm-2 search" type="text" placeholder="Search">
+                            </form>
+
                             <h2 class="card-title">Table Tournoi</h2>
 
+
+                            <a href="{{ path('Stattournoi') }}"><button  type="button" class="btn btn-outline-info"> Statistique</button></a>
+
+                            <a href="{{ path('tournoi_list') }}"><button  type="button" class="btn btn-outline-info"> Imprimer</button></a>
+                            <a href="{{ path('sortnbr_joueur') }}"><button type="button" class="btn btn-outline-info">tri</button></a>
+
                           <a href="{{ path('tournoi_new') }}" class="btn btn-success btn-fw"> Ajouter</a>
+
 
 
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id_tour</th>
                 <th>Nom_tour</th>
                 <th>Desc_tour</th>
                 <th>Nbr_joueur</th>
@@ -33,7 +57,6 @@
         <tbody>
         {% for tournoi in tournois %}
             <tr class="table-primary">
-                <td>{{ tournoi.idtour }}</td>
                 <td>{{ tournoi.nomTour }}</td>
                 <td>{{ tournoi.descTour }}</td>
                 <td>{{ tournoi.nbrJoueur }}</td>
@@ -53,6 +76,15 @@
                 <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
+        <!-- Pagination -->
+        <ul class="pagination">
+            <!-- Pagination   knp_pagination_render(commandes, 'commandes/pagination.html.twig') -->
+            {{ knp_pagination_render(tournois) }}
+
+        </ul>
+        <!-- /Pagination -->
+        </tbody>
+        <tbody id="search">
         </tbody>
     </table>
                         </div>
@@ -63,4 +95,51 @@
     </div>
 </div>
 
+
+
+{% endblock %}
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+    $( document ).ready(function() {
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value = $(this).val();
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('search_tournoi') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type : 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'searchValue' : value
+                },
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+                    //console.log(retour);
+                    if(retour){
+                        $('#t tbody#search').empty();
+                        $.each(JSON.parse(retour), function(i, obj) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#search').append(
+                                '<tr><td> '+obj.nom_tour+' ' +
+                                ' </td><td>    '+obj.desc_tour+'' +
+                                '  </td><td> <a href="/tournoi/'+obj.id+'/edit"></a></td></tr>'
+                            );
+                        });
+                    }
+                    else
+                    {
+                        $('#t tbody#all').show();
+                        $('#t tbody#search').empty();
+                        $('#t tbody#search').fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
 {% endblock %}
