@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UserType extends AbstractType
 {
@@ -21,8 +22,16 @@ class UserType extends AbstractType
             ->add('prenom')
             ->add('mail')
             ->add('mdp' , PasswordType::class)
-
             ->add("submit",SubmitType::class)
+            ->add('titre')
+//On Ajoute un champ image: il n'est pas lié à la bdd (pas mapped)
+            ->add('images', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped'=> false,
+                'required' =>false
+            ])
+
         ;
     }
 
