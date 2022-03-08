@@ -170,7 +170,7 @@ class ActualitesController extends AbstractController
 
 
 
-    /*public function sendEmail(MailerInterface $mailer,$actualite): Response
+    public function sendEmail(MailerInterface $mailer,$actualite): Response
     {
         $email = (new Email())
             ->from('projectpidev69@gamil.com')
@@ -183,5 +183,5 @@ class ActualitesController extends AbstractController
             ->html('actualites/email.html.twig');
         $mailer->send($email);
 
-    }*/
+    }
 }
