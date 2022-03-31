@@ -170,18 +170,5 @@ class ActualitesController extends AbstractController
 
 
 
-    public function sendEmail(MailerInterface $mailer,$actualite): Response
-    {
-        $email = (new Email())
-            ->from('projectpidev69@gamil.com')
-            ->to('aloui.yassine@esprit.tn')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->html('actualites/email.html.twig');
-        $mailer->send($email);
 
-    }
 }

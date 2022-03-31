@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use DeepCopy\TypeFilter\Date;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ActualitesRepository::class)
@@ -17,18 +19,21 @@ class Actualites
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Groups("post:read")
      */
     private $image;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
+     * @Groups("post:read")
      */
 
     private $Description;
@@ -36,6 +41,7 @@ class Actualites
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Groups("post:read")
      */
     private $nom;
 
