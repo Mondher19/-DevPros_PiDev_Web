@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EquipementFXMLController">
+   <children>
+      <TextField fx:id="name" layoutX="87.0" layoutY="128.0" />
+      <TextField fx:id="tfmarque" layoutX="86.0" layoutY="200.0" />
+      <TextField fx:id="description" layoutX="325.0" layoutY="128.0" />
+      <Label fx:id="nom" layoutX="84.0" layoutY="93.0" prefHeight="21.0" prefWidth="84.0" text="Nom" />
+      <Label fx:id="lmarque" layoutX="84.0" layoutY="166.0" text="Marque" />
+      <Label layoutX="329.0" layoutY="93.0" text="Description" />
+      <Label layoutX="325.0" layoutY="166.0" text="Image" />
+      <Label layoutX="84.0" layoutY="240.0" text="Prix" />
+      <TextField fx:id="image" layoutX="325.0" layoutY="200.0" />
+      <TextField fx:id="prix" layoutX="86.0" layoutY="268.0" />
+      <TextField fx:id="categorieeq" layoutX="325.0" layoutY="268.0" />
+      <Label layoutX="325.0" layoutY="240.0" prefHeight="21.0" prefWidth="90.0" text="Categorie" />
+      <Label layoutX="198.0" layoutY="33.0" prefHeight="21.0" prefWidth="205.0" text="Ajouter un Equipement" />
+   </children>
+</AnchorPane>
