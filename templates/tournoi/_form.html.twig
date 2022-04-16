@@ -1,0 +1,30 @@
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ajout Tournoi</h4>
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="form-group">
+                {{ form_label(form.nom_tour, 'Nom Tournoi'|trans, {'label_attr' : {'class': '' }}) }}
+                {{ form_widget(form.nom_tour, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.desc_tour, 'Description Tournoi'|trans, {'label_attr' : {'class': '' }}) }}
+                {{ form_widget(form.desc_tour, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.nbr_joueur, 'Nombre joueur'|trans, {'label_attr' : {'class': '' }}) }}
+                {{ form_widget(form.nbr_joueur, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.tour, 'Type de tournoi'|trans, {'label_attr' : {'class': 'col-sm-3 col-form-label' }}) }}
+                {{ form_widget(form.tour, {'attr': {'class': 'form-control'}}) }}
+            </div>
+    <button  class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+
+            <a  class="btn btn-outline-primary" href="{{ path('tournoi_index') }}">back to list</a>
+{{ form_end(form) }}
+        </div>
+    </div>
+</div>

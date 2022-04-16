@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Data Table | Kiaalap - Kiaalap Admin Template</title>
+    <title>DevPros</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('back-office/img/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png')}}" />
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -82,18 +83,56 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="index.html"><img class="main-logo" src="{{ asset('back-office/img/logo/logo.png') }}" alt="" /></a>
-            <strong><a href="{{ asset('back-office/') }}index.html"><img src="{{ asset('back-office/img/logo/logosn.png') }}" alt="" /></a></strong>
+            <a href="#"><img class="main-logo" src="{{ asset('img/logo.png') }}"  width="50" alt="" /></a>
+            <strong><a href="#"><img src="{{ asset('img/logo.png') }}" alt="" /></a></strong>
         </div>
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
-                    <li>
-                        <a class="has-arrow" href="{{ asset('back-office/') }}all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Equipement </span></a>
-                        <ul class="submenu-angle" aria-expanded="false">
 
+                    <li>
+                        <a title="Landing Page" href="events.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
+                    </li>
+
+
+                    <li>
+                        <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Gestion des Tournois</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Professors" href="{{ path('tournoi_index') }}"><span class="mini-sub-pro">Tournoi </span></a></li>
+                            <li><a title="Add Professor" href="{{ path('type_tournoi_index') }}"><span class="mini-sub-pro">Type Tournoi </span></a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a title="Landing Page" href="{{ path('listuser') }}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Gestion des Utilisateurs</span></a>
+                    </li>
+                    <li>
+                        <a title="Landing Page" href="{{ path('listcategorie') }}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Gestion des Categories</span></a>
+                    </li>
+
+                    <li>
+                        <a title="Landing Page" href="{{ path('listactualites') }}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Gestion des Actualités</span></a>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Gestion des Produits & Catégories</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Students" href="{{ path('listProduct') }}"><span class="mini-sub-pro">Produits</span></a></li>
+                            <li><a title="Add Students" href="{{ path('listcat_1') }}"><span class="mini-sub-pro">Catégories </span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Gestion des Commandes & Panier</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="{{ path('commande_index') }}"><span class="mini-sub-pro">Commandes</span></a></li>
+                            <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Panier</span></a></li>
+                        </ul>
+                    </li>
+
+
+
+
+
                 </ul>
             </nav>
         </div>
@@ -756,18 +795,20 @@
                                         </ul>
                                     </li>
                                     <li><a href="{{ asset('back-office/') }}events.html">Event</a></li>
-                                    <li><a data-toggle="collapse" data-target="demoevent" href="{{ asset('back-office/') }}">Professors <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+
+
+                                    <li><a data-toggle="collapse" data-target="demoevent" href="{{ asset('back-office/') }}">Gestion des Tournois <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                         <ul id="demoevent" class="collapse dropdown-header-top">
-                                            <li><a href="{{ asset('back-office/') }}all-professors.html">All Professors</a>
+                                            <li><a href="{{ path('tournoi_index') }}all-professors.html">Tournois</a>
                                             </li>
-                                            <li><a href="{{ asset('back-office/') }}add-professor.html">Add Professor</a>
+                                            <li><a href="{{ path('tournoi_index') }}add-professor.html">Type Tournois</a>
                                             </li>
-                                            <li><a href="{{ asset('back-office/') }}edit-professor.html">Edit Professor</a>
-                                            </li>
-                                            <li><a href="{{ asset('back-office/') }}professor-profile.html">Professor Profile</a>
-                                            </li>
+
                                         </ul>
                                     </li>
+
+
+
                                     <li><a data-toggle="collapse" data-target="demopro" href="{{ asset('back-office/') }}">Students <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                         <ul id="demopro" class="collapse dropdown-header-top">
                                             <li><a href="{{ asset('back-office/') }}all-students.html">All Students</a>
@@ -968,7 +1009,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="footer-copy-right">
-                        <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                        <p>Copyright © 2022. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">DevPros</a></p>
                     </div>
                 </div>
             </div>

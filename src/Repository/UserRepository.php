@@ -52,6 +52,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getSingleResult();
     }
+    /**
+     *
+     * Requête QueryBuilder
+     */
+    public function listUserByNom(){
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.nom','ASC')
+            ->getQuery()
+            ->getResult()
+
+            ;
+
+    }
+
+
+
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

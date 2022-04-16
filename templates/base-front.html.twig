@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Gamepad {% block title %} index {% endblock %}</title>
+    <title>DevPros {% block title %} DevPros {% endblock %}</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -22,6 +22,8 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="{{ asset('front-office/css/responsive.css') }}">
     <!-- fevicon -->
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png')}}" />
     <link rel="icon" href="{{ asset('front-office/images/fevicon.png" type="image/gif') }}" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="{{ asset('front-office/css/jquery.mCustomScrollbar.min.css') }}">
@@ -43,24 +45,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Acceuil</a>
+                    <a class="nav-link" href="{{ path('listactualitesf') }}">Acceuil</a>
                 </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">Equipement</a>
+                    <a class="nav-link" href="{{ path('listcat_2') }}">Equipement</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="video.html">Organiser un Tournoi</a>
+                    <a class="nav-link" href="#">Rejoindre un tournoi</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="remot.html">Rejoindre un tournoi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Actualités</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">à Propos</a>
-                </li>
+
+
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="#"><img src="{{ asset('front-office/images/search-icon.png') }}"></a>
                 </li>
@@ -69,6 +68,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('app_register')}}">Inscription</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ path('panier_index')}}">  <img width="50" height="50" src="https://cdn-icons-png.flaticon.com/512/891/891462.png"/>  </a>
                 </li>
             </ul>
         </div>

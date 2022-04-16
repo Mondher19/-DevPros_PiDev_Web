@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -18,12 +19,14 @@ class User implements UserInterface
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @Groups ("post:read")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups ("post:read")
      */
     private $mail;
 
@@ -34,10 +37,12 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups ("post:read")
      */
     private $nom;
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups ("post:read")
      */
     private $prenom;
 
@@ -49,6 +54,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups ("post:read")
      */
     private $password;
 
@@ -77,17 +83,19 @@ class User implements UserInterface
         return $this->id;
     }
 
+    public function setId(int $i)
+    {
+        $this->id=$i;
+    }
+
     public function getMail(): ?string
     {
         return $this->mail;
     }
 
-    public function setMail(string $mail): self
+    public function setMail( $mail): void
     {
         $this->mail = $mail;
-
-        return $this;
-
     }
     public function getNom()
     {

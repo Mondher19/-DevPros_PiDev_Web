@@ -1,0 +1,68 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Tournoi index{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-lg-6 grid-margin stretch-card">
+                    </div>
+                    <div class="col-lg-12 grid-margin stretch-card">
+                    </div>
+                    <div class="col-lg-12 stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <a href="{{ path('tournoi_list') }}"><button  type="button" class="btn btn-outline-info"> Imprimer</button></a>
+                                <a href="{{ path('sortnbr_joueur') }}"><button type="button" class="btn btn-outline-info">tri</button></a>
+                                <h2 class="card-title">Table Tournoi</h2>
+
+                                <a href="{{ path('tournoi_new') }}" class="btn btn-success btn-fw"> Ajouter</a>
+
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Id_tour</th>
+                                        <th>Nom_tour</th>
+                                        <th>Desc_tour</th>
+                                        <th>Nbr_joueur</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for tournoi in nbr_joueursorted %}
+                                        <tr class="table-primary">
+                                            <td>{{ tournoi.idtour }}</td>
+                                            <td>{{ tournoi.nomTour }}</td>
+                                            <td>{{ tournoi.descTour }}</td>
+                                            <td>{{ tournoi.nbrJoueur }}</td>
+                                            <td>
+
+                                                <a  class="btn btn-success btn-fw" href="{{ path('tournoi_edit', {'id_tour': tournoi.idtour}) }}">Update</a>
+
+
+
+                                            </td>
+                                            <td>
+                                                <div  >{{ include('tournoi/_delete_form.html.twig') }}</div>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

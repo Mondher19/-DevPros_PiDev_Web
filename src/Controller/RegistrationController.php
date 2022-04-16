@@ -24,7 +24,7 @@ use Symfony\Bundle\MonologBundle\SwiftMailer;
 
 class RegistrationController extends AbstractController
 {
-    private EmailVerifierAlias $emailVerifier;
+   private EmailVerifierAlias $emailVerifier;
 
     public function __construct(EmailVerifierAlias $emailVerifier)
     {
@@ -113,7 +113,7 @@ $user->setActivationToken(null);
 $entityManager =$this->getDoctrine()->getManager();
 $entityManager->flush();
 $this->addFlash('message','vous avez bien active votre compte');
-return $this->redirectToRoute('listuser');
+return $this->redirectToRoute('listactualitesf');
 
      }
 }

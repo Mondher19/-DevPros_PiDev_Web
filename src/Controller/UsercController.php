@@ -82,7 +82,7 @@ class UsercController extends AbstractController
      */
     public function list()
     {
-        $user= $this->getDoctrine()->getRepository(User::class)->findAll();
+        $user= $this->getDoctrine()->getRepository(User::class)->listUserByNom();
         return $this->render("userc/list-user.html.twig", array('user'=>$user));
     }
 
@@ -119,7 +119,7 @@ class UsercController extends AbstractController
         if($form->isSubmitted() && $form->isValid() ){
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute("listuser");
+            return $this->redirectToRoute("listactualitesf");
         }
         return $this->render("userc/edit.html.twig",array("formmodif"=>$form->createView()));
     }
@@ -134,6 +134,6 @@ class UsercController extends AbstractController
         $em= $this->getDoctrine()->getManager();
         $em->remove($gamescat);
         $em->flush();
-        return $this->redirectToRoute("listuser");
+        return $this->redirectToRoute("listactualitesf");
     }
 }

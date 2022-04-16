@@ -25,7 +25,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
          if ($this->getUser()) {
-             return $this->redirectToRoute('listuser');
+             return $this->redirectToRoute('listactualitesf');
          }
 
         // get the login error if there is one
@@ -71,7 +71,7 @@ if ($form->isSubmitted() && $form->isValid()){
             ->to($user->getMail())
             ->html(
                 "<p> bonjour ,</p><p></p> une demande de reintilation de mot de passe a ete effectué pour le le site gamepad.fr.
- veuillez cliquer sur le lien suivant: 127.0.0.1:8000" .$url ."</p>");
+ veuillez cliquer sur le lien suivant: localhost:80" .$url ."</p>");
 
         $mailer->send($message);
 $this->addFlash('message' , "un e_mail de renitialisation de mot de passe  vous a ete envoye");
@@ -85,7 +85,7 @@ return  $this->render('security/pass_oublier.html.twig', ['emailForm' => $form->
         $user=$this->getDoctrine()->getManager()->getRepository(User::class)->findytoken($token);
         if (!$user)
         {
-            return $this->redirectToRoute("login");
+            return $this->redirectToRoute("listactualitesf");
         }
         $form = $this->createForm(PassType::class);
         $form->handleRequest($request);
@@ -98,7 +98,7 @@ return  $this->render('security/pass_oublier.html.twig', ['emailForm' => $form->
                 )
             );
             $entityManager->flush();
-            return $this->redirectToRoute("login");
+            return $this->redirectToRoute("listactualitesf");
         }
         return $this->render ('security/pass_oublier_form.html.twig', ['form' => $form->createView()]);
 

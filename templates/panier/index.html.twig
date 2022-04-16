@@ -1,0 +1,76 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body %}
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+    {% if items | length > 0 %}
+        <table class="table" text = "#0000FF">
+            <thead>
+            <tr>
+                <th><h4><strong>Equipement</strong></h4></th>
+                <th><h4><strong>Description</strong></h4></th>
+                <th><h4><strong>Prix</strong></h4></th>
+                <th class="quantity"><h4><strong>Quantité</strong></h4></th>
+                <th><h4><strong>Total</strong></h4></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody  text = "blue" bgcolor = "white">
+            {% for item in items %}
+                <tr>
+                    <td ><strong>{{ item.Equipement.name }}</strong></td>
+                    <td>{{ item.Equipement.description }}</td>
+                    <td>{{ item.Equipement.prix}}</td>
+                    <td>
+
+                            <div class="cart_quantity_button">
+                                <a class="cart_quantity_up" href="{{path("panier_add", {id: item.Equipement.id})}}"> + </a>
+                                <input class="cart_quantity_input" type="text" name="quantite" value="{{ item.quantite }}" autocomplete="off" size="2">
+                                <a class="cart_quantity_down" href="{{path("remove", {id: item.Equipement.id})}}"> - </a>
+                            </div>
+                    </td>
+                    <td> <strong>{{ item.Equipement.prix * item.quantite }} <h6>DT</h6></strong></td>
+                    <td>
+                        <a href="{{ path('panier_remove',{'id': item.Equipement.id}) }}" class="btn btn-danger">
+                            Supprimer <i class="bi bi-cart-x"></i>
+                        </a>
+                    </td>
+
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+
+            <tr>
+                <td colspan="3">Total</td>
+                <td class="text-end">{{ total }} €</td>
+                <td>
+                    <a href="#" class="btn btn-danger">
+                        Tout supprimer <i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="" class="text-right">
+                    <a href="{{path("equipement")}}" class="btn btn-warning">
+                        POURSUIVRE VOS ACHATS<i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+                <td colspan="" class="text-right">
+                    <a  href="{{path("commande_new")}}" class="btn btn-success">
+                        FINALISER VOTRE COMMANDE<i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+
+            </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <p>Surprise, c'est vide !</p>
+    {% endif %}
+
+{% endblock %}

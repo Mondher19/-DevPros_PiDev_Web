@@ -2,32 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
-use App\Form\UpdateUserType;
-use App\Security\EmailVerifier as EmailVerifierAlias;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use App\Entity\Actualites;
+use App\Entity\Categorie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-
-
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\HttpFoundation\Request;
 class MobileController extends AbstractController
 {
-    /*private EmailVerifierAlias $emailVerifier;
-    public function __construct(EmailVerifierAlias $emailVerifier)
-    {
-        $this->emailVerifier = $emailVerifier;
-    }*/
-
-
-
     /**
-     * @Route("/mobile", name="mobile")
+     * @Route("/mobile", name="app_mobile")
      */
     public function index(): Response
     {
@@ -36,123 +22,96 @@ class MobileController extends AbstractController
         ]);
     }
 
-
-
-
     /**
-     * @Route("/loginmobile", name="loginmobile")
+     * @Route("/getcai", name="getcategori")
      */
-    public function login(Request $request,NormalizerInterface $normalizer,UserPasswordEncoderInterface $userPasswordEncoder):Response
+    public function getallcategoriee(NormalizerInterface $normalizer): Response
     {
-        $user=new User();
-        $Un = $request->get('u');
-        $pwd = "walid123456";
-        $repository=$this->getDoctrine()->getRepository(User::class);
-        $user=$repository->findOneBy(['username' => $Un]);
-        if($userPasswordEncoder->isPasswordValid($user,$pwd))
-            echo "valid";
-        else
-            echo "hehehe";
-        //$User=$repository->findAll();
-        $jsonContent = $normalizer->normalize($user,'json',['groups'=>'post:read']);
-        //return $this->render('mobile/loginjson.html.twig',['data'=>$jsonContent]);
+        $repository=$this->getDoctrine()->getRepository(Categorie::class);
+        $cata=$repository->findAll();
+        $jsonContent = $normalizer->normalize($cata,'json',['groups'=>'post:read']);
         return new Response(json_encode($jsonContent));
     }
 
-
     /**
-     * @Route("/getusermobile/{id}", name="getusersmobile")
+     * @Route("/getactualite", name="getactualite")
      */
-    public function getsingleuser(Request $request,NormalizerInterface  $normalizer,$id):Response
+    public function getallactualite(NormalizerInterface $normalizer): Response
     {
-        $repository=$this->getDoctrine()->getRepository(User::class);
-        $users=$repository->find($id);
-        $jsonContent = $normalizer->normalize($users,'json',['groups'=>'post:read']);
+        $repository=$this->getDoctrine()->getRepository(Actualites::class);
+        $actualite=$repository->findAll();
+        $jsonContent = $normalizer->normalize($actualite,'json',['groups'=>'post:read']);
         return new Response(json_encode($jsonContent));
     }
-
-
-
     /**
-     * @Route("/addusermobile", name="addusermobile")
+     * @Route("/createactualite",name="createactualitee")
      */
-    public function adduser(Request $request, NormalizerInterface $normalizer,UserPasswordEncoderInterface $userPasswordEncoder)
+    public function addactualite(Request $request,NormalizerInterface $normalizer)
     {
-        $user= $this->getDoctrine()->getManager();
-        $user = new User();
-        $user->setmail($request->get("email"));
-        $user->setNom($request->get("username"));
-        $user->setPrenom(false);
-        $user->setPassword(
-            $userPasswordEncoder->encodePassword(
-                $user,
-                $request->get("password")
-            )
-        );
+        $act= new Actualites();
+        $act->setImage($request->get("image"));
+        $act->setDescription($request->get("Description"));
+        $act->setNom($request->get("nom"));
         $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
+        $em->persist($act);
         $em->flush();
-        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            (new TemplatedEmail())
-                ->from(new Address('svnoclip11@gmail.com', 'sv_noclip'))
-                ->to($user->getEmail())
-                ->subject('Please Confirm your Email')
-                ->htmlTemplate('registration/confirmation_email.html.twig')
-        );
-        $jsonContent = $normalizer->normalize($user,'json',['groups'=>'post:read']);
-        return new Response(json_encode($jsonContent));
+        $jsonContent=$normalizer->normalize($act,'json',['groups'=>'read']);
+return new Response(json_encode($jsonContent));
     }
-
-
     /**
-     * @Route("/getusersmobile", name="getusersmobile")
+     * @Route("/dactualite/{id}",name="dactualitee")
      */
-    public function getusers(Request $request,NormalizerInterface $normalizer):Response
+    public function delact(Request $request,NormalizerInterface $normalizer):Response
     {
-        $repository=$this->getDoctrine()->getRepository(User::class);
-        $users=$repository->findAll();
-        //$User=$repository->findAll();
-        $jsonContent = $normalizer->normalize($users,'json',['groups'=>'post:read']);
-        //return $this->render('mobile/loginjson.html.twig',['data'=>$jsonContent]);
-        return new Response(json_encode($jsonContent));
-    }
-
-
+        $id = $request->get("id");
+        $em= $this->getDoctrine()->getManager();
+        $T=$em->getRepository(Actualites::class)->find($id);
+        $em->remove($T);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($T,'json',['groups'=>'post:read']);
+        return new Response("User deleted Successfully ".json_encode($jsonContent))
+            ;    }
     /**
-     * @Route("/updateusermobile/", name="updateusermobile")
+     * @Route("/azer/{id}",name="updactt")
      */
-    public function update(Request $request,UserPasswordEncoderInterface $userPasswordEncoder,NormalizerInterface $normalizer){
-        $id=($request->get("id"));
-        $user= $this->getDoctrine()->getRepository(User::class)->find($id);
-        $user->setPoints($request->get("points"));
-        $user->setBio($request->get("bio"));
-        $user->setEmail($request->get("email"));
-        $user->setUsername($request->get("username"));
-        $user->setPassword(
-            $userPasswordEncoder->encodePassword(
-                $user,
-                $request->get("password")));
+    public function updateactualiteeee(Request $request,NormalizerInterface $normalizer,$id){
+        $id = $request->get("id");
+        $act= $this->getDoctrine()->getRepository(Actualites::class)->find($id);
+        $act->setImage($request->get("image"));
+        $act->setDescription($request->get("Description"));
+        $act->setNom($request->get("nom"));
         $em = $this->getDoctrine()->getManager();
         $em->flush();
-        $jsonContent = $normalizer->normalize($user,'json',['groups'=>'post:read']);
+        $jsonContent = $normalizer->normalize($act,'json',['groups'=>'post:read']);
 
         return new Response(json_encode($jsonContent));
 
     }
-
-
     /**
-     * @Route("/deusersmobile", name="delusersmobile")
+     * @Route("/addca",name="createcategoriee")
      */
-    public function deleteusermobile(Request $request,NormalizerInterface $normalizer):Response
+    public function addcategoriee(Request $request,NormalizerInterface $normalizer)
     {
-        $repository=$this->getDoctrine()->getManager();
-        $id=$request->get("id");
-        $user=$repository->getRepository(User::class)->find($id);
-        $repository->remove($user);
-        $repository->flush();
-        $jsonContent = $normalizer->normalize($user,'json',['groups'=>'post:read']);
-        return new Response(json_encode("User deleted Successfully "));
+        $cat= new Categorie();
+        $cat->setSujet($request->get("sujet"));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($cat);
+        $em->flush();
+        $jsonContent=$normalizer->normalize($cat,'json',['groups'=>'read']);
+        return new Response(json_encode($jsonContent));
     }
-
+    /**
+     * @Route("/Delete/{id}",name="dcategorieee")
+     */
+    public function delcat(Request $request,NormalizerInterface $normalizer,$id):Response
+    {
+        $id = $request->get("id");;
+        $em= $this->getDoctrine()->getManager();
+        $T=$em->getRepository(Categorie::class)->find($id);
+        $em->remove($T);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($T,'json',['groups'=>'post:read']);
+        return new Response("User deleted Successfully ".json_encode($jsonContent))
+            ;    }
+    
 }

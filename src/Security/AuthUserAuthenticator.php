@@ -97,7 +97,7 @@ class AuthUserAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
 
-        return new RedirectResponse($this->urlGenerator->generate('listuser'));
+        return new RedirectResponse($this->urlGenerator->generate('listactualitesf'));
     }
 
     protected function getLoginUrl()

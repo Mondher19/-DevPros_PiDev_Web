@@ -21,9 +21,9 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('mail')
-            ->add('mdp' , PasswordType::class)
+            ->add('password' , PasswordType::class)
             ->add("submit",SubmitType::class)
-            ->add('titre')
+          //  ->add('titre')
 //On Ajoute un champ image: il n'est pas lié à la bdd (pas mapped)
             ->add('images', FileType::class, [
                 'label' => false,
