@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterCommandeController">
+         <children>
+      <Label layoutX="61.0" layoutY="193.0" prefHeight="32.0" prefWidth="136.0" text="Prenom" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="134.0" prefHeight="32.0" prefWidth="102.0" text="Nom" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="prenomT" layoutX="242.0" layoutY="196.0" promptText="Prenom" />
+      <Text fx:id="alertPrenom" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TextField fx:id="nomT" layoutX="242.0" layoutY="137.0" promptText="Nom" />
+      <Text fx:id="alertNom" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TextField fx:id="adresseT" layoutX="242.0" layoutY="253.0" promptText="Adresse" />
+      <Text fx:id="alertadresse" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TextField fx:id="numtelT" layoutX="242.0" layoutY="313.0" promptText="phone" />
+      <Text fx:id="alertNumtel" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <Text fx:id="alerttotal" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+       <Text fx:id="alertquantite" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+       <Text fx:id="alertEmail" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <Label layoutX="58.0" layoutY="250.0" prefHeight="32.0" prefWidth="118.0" text="Adresse" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="310.0" prefHeight="32.0" prefWidth="102.0" text="Phone" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      
+      <Button fx:id="ajout" layoutX="58.0" layoutY="481.0" mnemonicParsing="false" onAction="#ajouterComande" prefHeight="44.0" prefWidth="111.0" styleClass="add-btn" stylesheets="@style.css" text="Ajouter" />
+       <Text fx:id="alertDate" fill="#f10a0a" layoutX="-160.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TextField fx:id="emailT" layoutX="242.0" layoutY="371.0" promptText="email" />
+      <Label layoutX="58.0" layoutY="368.0" prefHeight="32.0" prefWidth="102.0" text="Email" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Text fill="#00ffd9" fontSmoothingType="LCD" layoutX="226.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter  Commande" textAlignment="CENTER">
+         <font>
+            <Font size="32.0" />
+         </font>
+         <cursor>
+            
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                 
+               </light>
+            </Lighting>
+         </effect>
+      </Text>
+      <TableView fx:id="list" layoutX="468.0" layoutY="155.0" prefHeight="247.0" prefWidth="360.0">
+        <columns>
+          <TableColumn fx:id="idT" prefWidth="75.0" text="id panier" />
+          <TableColumn fx:id="nbrT" prefWidth="128.7999267578125" text="nombre equipement" />
+            <TableColumn fx:id="ideT" prefWidth="87.199951171875" text="id equipement" />
+            <TableColumn fx:id="sommeT" prefWidth="75.0" text="somme" />
+        </columns>
+      </TableView>
+      <TextField fx:id="idp" layoutX="46.0" layoutY="76.0" />
+      <Button fx:id="retour" layoutX="310.0" layoutY="481.0" mnemonicParsing="false" onAction="#retourner" prefHeight="44.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@style.css" text="Retour" />
+      <TextField fx:id="nbreq" layoutX="649.0" layoutY="428.0" prefHeight="26.0" prefWidth="179.0" promptText="Nombre equipement" />
+      <Button fx:id="modifier" layoutX="468.0" layoutY="481.0" mnemonicParsing="false" onAction="#modifierPanier" prefHeight="44.0" prefWidth="111.0" styleClass="add-btn" stylesheets="@style.css" text="Modifier" />
+      <Label fx:id="nb" layoutX="468.0" layoutY="425.0" prefHeight="32.0" prefWidth="150.0" text="Nombre equipement" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="supprimer" layoutX="716.0" layoutY="479.0" mnemonicParsing="false" onAction="#supprimerPanier" prefHeight="44.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@style.css" text="Supprimer" />
+      
+   </children>
+</AnchorPane>

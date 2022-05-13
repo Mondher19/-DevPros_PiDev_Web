@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="621.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GestionCommandeController">
+     <children>
+      <Label layoutX="34.0" layoutY="173.0" prefHeight="32.0" prefWidth="136.0" text="Prenom" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="105.0" prefHeight="32.0" prefWidth="102.0" text="Nom" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="prenomT" layoutX="35.0" layoutY="207.0" promptText="Prenom" />
+      <Text fx:id="alertPrenom" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TextField fx:id="nomT" layoutX="35.0" layoutY="139.0" promptText="Nom" />
+      <Text fx:id="alertNom" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TextField fx:id="adresseT" layoutX="35.0" layoutY="272.0" promptText="Adresse" />
+      <Text fx:id="alertadresse" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TextField fx:id="numtelT" layoutX="35.0" layoutY="331.0" promptText="phone" />
+      <Text fx:id="alertNumtel" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <Text fx:id="alerttotal" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+       <Text fx:id="alertquantite" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+       <Text fx:id="alertEmail" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <Label layoutX="35.0" layoutY="239.0" prefHeight="32.0" prefWidth="118.0" text="Adresse" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="34.0" layoutY="297.0" prefHeight="32.0" prefWidth="102.0" text="Phone" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      
+      <Button layoutX="51.0" layoutY="484.0" mnemonicParsing="false" onAction="#modifierCommande" prefHeight="44.0" prefWidth="85.0" styleClass="add-btn" stylesheets="@style.css" text="Modifier" />
+      <HBox alignment="CENTER" layoutX="382.0" layoutY="158.0" prefHeight="44.0" prefWidth="318.0" stylesheets="@style1.css">
+         <styleClass>
+            <String fx:value="search-box" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </HBox>
+       <Text fx:id="alertDate" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+<Text fx:id="alertIdReservations" fill="#f10a0a" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="240.0000022041222" />
+      <TableView fx:id="tableCommandes" layoutX="330.0" layoutY="242.0" prefHeight="334.0" prefWidth="604.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="Identifant" />
+          <TableColumn fx:id="nomC" minWidth="7.0" prefWidth="101.0" text="Nom" />
+           
+            <TableColumn fx:id="prenomC" prefWidth="85.0" text="Prenom" />
+            
+            <TableColumn fx:id="adresseC" prefWidth="82.0" text="Adresse" />
+             
+            <TableColumn fx:id="numtelC" prefWidth="75.0" text="Phone" />
+             
+            <TableColumn fx:id="emailC" prefWidth="109.0" text="Email" />
+            <TableColumn fx:id="sommeC" prefWidth="75.0" text="id_pannier" />
+             
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" layoutX="823.0" layoutY="41.0" prefHeight="79.0" prefWidth="235.0" styleClass="shopping-online-card" stylesheets="@style1.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="207.0" textFill="#878787">
+                     <font>
+                        <Font name="Cambria" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="btntrier" layoutX="1104.0" layoutY="165.0" mnemonicParsing="false" onAction="#Trier" prefHeight="44.0" prefWidth="85.0" styleClass="add-btn" stylesheets="@style.css" text="Tri" />
+      <ComboBox fx:id="choisir" layoutX="1058.0" layoutY="246.0" prefWidth="150.0" />
+      <TextField fx:id="emailT" layoutX="34.0" layoutY="402.0" promptText="email" />
+      <Label layoutX="33.0" layoutY="367.0" prefHeight="32.0" prefWidth="102.0" text="Email" textFill="#2f2f2f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="950.0" layoutY="416.0" mnemonicParsing="false" onAction="#supprimerCommande" prefHeight="52.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@style1.css" text="Supprimer" textFill="#828282">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="idSuppression" layoutX="960.0" layoutY="359.0" prefHeight="40.0" prefWidth="235.0" promptText="Type here to remove" styleClass="transparent" stylesheets="@style1.css">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="filterFieldC" layoutX="455.0" layoutY="160.0" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@style1.css">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="#00ffd9" fontSmoothingType="LCD" layoutX="191.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Espace Administrateur un Commande" textAlignment="CENTER">
+         <font>
+            <Font size="32.0" />
+         </font>
+         <cursor>
+            
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                 
+               </light>
+            </Lighting>
+         </effect>
+      </Text>
+      <Button layoutX="208.0" layoutY="546.0" mnemonicParsing="false" onAction="#generatePdf" prefHeight="44.0" prefWidth="102.0" text="PDF" />
+      <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="170.0" layoutY="559.0">
+         <image>
+            <Image url="@../../../../../../Projet%20Pi%20dev/pidev3A/Pidev3A/SurTerrainJava/src/assets/print.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="844.0" layoutY="187.0" mnemonicParsing="false" onAction="#ViewPanier" text="view Pannier" />
+      <TableView fx:id="tabp" layoutX="766.0" layoutY="62.0" prefHeight="110.0" prefWidth="296.0">
+         <columns>
+            <TableColumn fx:id="descColumn" prefWidth="168.0" text="Nbr" />
+            <TableColumn fx:id="dureeoColumn" prefWidth="163.0" text="Somme" />
+         </columns>
+      </TableView>
+      <Button fx:id="gM" layoutX="51.0" layoutY="37.0" mnemonicParsing="false" onAction="#gM" prefHeight="44.0" prefWidth="102.0" text="Back" />
+      
+   </children>
+</AnchorPane>
